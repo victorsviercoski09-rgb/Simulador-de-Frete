@@ -1,0 +1,72 @@
+<!DOCTYPE h tml>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Simulador de Frete</title>            
+        <style>
+            body{
+                display: flex;
+                align-content: center;
+                justify-content: center;
+                background: linear-gradient(to bottom right, black, yellow, cyan);
+                height: 100vh;
+            }
+            .main{
+                display: flex;
+                align-content: center;
+                justify-content: center;
+                flex-direction: column;
+                background: rgba(255, 255, 255, 0.3);
+                border-radius: 30px;
+                margin: auto;
+                box-shadow: 10px 10px 20px 1px rgba(0, 0, 0, 0.5);
+                padding: 50px;
+            }
+        </style>
+    </head>
+    <body>
+        <main class="main">
+            <h1>Simulador de Frete</h1>
+            
+            <input type="number" placeholder="Valor da Compra" id="valorCompra"><br>
+            <input type="number" placeholder="Distância (Km)" id="distancia">
+
+            <select id="tipoCliente">
+                <option value="sim">Cliente Premium</option>
+                <option value="não">Cliente Comum</option>
+            </select>
+
+            <button onclick="calcular()">Calcular</button>
+
+            <h4 id="mostrarFrete"></h4>
+            <h4 id="mostrarTotal"></h4>
+
+            <script>
+                function calcular(){
+                    let valorCompra = document.getElementById("valorCompra").value;
+                    let distancia = document.getElementById("distancia").value;
+                    let tipoCliente = document.getElementById("tipoCliente").value;
+
+                    let frete;
+
+                    if(tipoCliente === "sim"){
+                        frete = 0;
+                    }
+                    else{
+                        if( valorCompra >= 150 && distancia <= 90 ){
+                            frete = 0;
+                        }
+                        else{
+                            frete = distancia * 20
+                        }
+                    }
+
+                    let total = Number(valorCompra) + Number(frete);
+                    document.getElementById("mostrarFrete").innerText = "Frete: " + frete; 
+                    document.getElementById("mostrarTotal").innerText = "Total: " + total
+                }
+            </script>
+        </main>
+    </body>
+</html>
